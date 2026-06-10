@@ -53,8 +53,10 @@
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .resonance-value {
-            font-variant-numeric: tabular-nums;
+        .resonance-bar {
+            transition: width 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            height: 6px;
+            border-radius: 9999px;
         }
 
         .metric-value {
@@ -362,20 +364,20 @@
                 </div>
             </div>
 
-            <!-- NEW: Resonate Examples Section -->
+            <!-- Resonate Examples Section with Animated Bars -->
             <div class="mt-10 bg-slate-950 border border-white/10 rounded-3xl p-8">
                 <div class="mb-6">
                     <div class="uppercase tracking-[3px] text-xs font-semibold text-cyan-400 mb-2">RESONATE EXAMPLES</div>
                     <h3 class="text-2xl font-semibold tracking-tight">Agent-to-Agent Emotional Contagion</h3>
-                    <p class="text-slate-400 mt-2">See how individual agents influence each other through resonance. This is the core mechanic behind <code>resonate_with()</code> and <code>communicate()</code>.</p>
+                    <p class="text-slate-400 mt-2">See how individual agents influence each other through resonance. This demonstrates the <code>resonate_with()</code> mechanic.</p>
                 </div>
 
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                    <!-- Pairwise Resonance Table -->
+                    <!-- Pairwise Resonance with Animated Bars -->
                     <div>
                         <div class="text-sm font-medium text-slate-400 mb-3">Current Pairwise Resonance</div>
-                        <div id="pairwise-resonance" class="bg-slate-900 border border-white/10 rounded-2xl p-4 text-sm font-mono space-y-2">
-                            <!-- Populated dynamically by JS -->
+                        <div id="pairwise-resonance" class="bg-slate-900 border border-white/10 rounded-2xl p-4 space-y-3 text-sm">
+                            <!-- Populated dynamically by JS with animated bars -->
                         </div>
                     </div>
 
@@ -386,7 +388,7 @@
                             <!-- Buttons populated by JS -->
                         </div>
                         <div class="mt-4 text-xs text-slate-500">
-                            Click to force two agents to resonate. Watch how their emotional states move closer together.
+                            Click any pair to force resonance. Watch the bars and emotional states animate as agents influence each other.
                         </div>
                     </div>
                 </div>
@@ -434,12 +436,10 @@
     </footer>
 
     <script>
-        // Tailwind script
         function initializeTailwind() {
             document.documentElement.style.setProperty('--accent-gold', '#c5a46e');
         }
 
-        // === Interactive Emotional Resonance Demo ===
         let agents = [
             { id: 'Aether', emotion: 0.65, color: '#67e8f9' },
             { id: 'Lumen', emotion: 0.38, color: '#c5a46e' },
@@ -540,6 +540,7 @@
             }
         }
 
+        // UPDATED: Animated bars for resonance table
         function updatePairwiseResonance() {
             const container = document.getElementById('pairwise-resonance');
             container.innerHTML = '';
@@ -549,17 +550,30 @@
                     const a = agents[i];
                     const b = agents[j];
                     const diff = Math.abs(a.emotion - b.emotion);
-                    const resonance = Math.max(0, 1 - diff).toFixed(2);
+                    const resonance = Math.max(0, 1 - diff);
+                    const percent = Math.round(resonance * 100);
 
-                    const div = document.createElement('div');
-                    div.className = 'flex justify-between items-center py-1 border-b border-white/10 last:border-b-0';
-                    div.innerHTML = `
-                        <span>${a.id} ↔ ${b.id}</span>
-                        <span class="font-semibold ${resonance > 0.7 ? 'text-emerald-400' : resonance > 0.4 ? 'text-amber-400' : 'text-rose-400'}">
-                            ${resonance}
-                        </span>
+                    const row = document.createElement('div');
+                    row.className = 'mb-3 last:mb-0';
+
+                    let barColor = 'bg-rose-400';
+                    if (resonance > 0.7) barColor = 'bg-emerald-400';
+                    else if (resonance > 0.4) barColor = 'bg-amber-400';
+
+                    row.innerHTML = `
+                        <div class="flex justify-between items-center text-xs mb-1">
+                            <span class="font-medium">${a.id} ↔ ${b.id}</span>
+                            <span class="font-mono font-semibold ${resonance > 0.7 ? 'text-emerald-400' : resonance > 0.4 ? 'text-amber-400' : 'text-rose-400'}">
+                                ${resonance.toFixed(2)}
+                            </span>
+                        </div>
+                        <div class="w-full bg-slate-800 rounded-full h-2 overflow-hidden">
+                            <div class="resonance-bar ${barColor}" 
+                                 style="width: ${percent}%">
+                            </div>
+                        </div>
                     `;
-                    container.appendChild(div);
+                    container.appendChild(row);
                 }
             }
         }
@@ -575,27 +589,27 @@
                     btn.textContent = `${agents[i].id} ↔ ${agents[j].id}`;
                     
                     btn.onclick = () => {
-                        const a = agents[i];
-                        const b = agents[j];
+                        const agentA = agents[i];
+                        const agentB = agents[j];
                         
-                        const diff = Math.abs(a.emotion - b.emotion);
+                        const diff = Math.abs(agentA.emotion - agentB.emotion);
                         const resonance = Math.max(0, 1 - diff);
                         
-                        // Apply resonance effect
-                        const avg = (a.emotion + b.emotion) / 2;
-                        const shift = (avg - a.emotion) * (0.25 + 0.3 * resonance);
+                        // Apply resonance effect (same logic as core engine)
+                        const avg = (agentA.emotion + agentB.emotion) / 2;
+                        const shiftStrength = 0.25 + 0.3 * resonance;
                         
-                        a.emotion = Math.max(-1, Math.min(1, a.emotion + shift));
-                        b.emotion = Math.max(-1, Math.min(1, b.emotion + (avg - b.emotion) * (0.25 + 0.3 * resonance)));
+                        agentA.emotion = Math.max(-1, Math.min(1, agentA.emotion + (avg - agentA.emotion) * shiftStrength));
+                        agentB.emotion = Math.max(-1, Math.min(1, agentB.emotion + (avg - agentB.emotion) * shiftStrength));
                         
                         createAgentControls();
                         updateMetricsAndVisual();
                         
-                        // Show feedback
+                        // Feedback
                         const log = document.getElementById('event-log');
                         const entry = document.createElement('div');
                         entry.className = 'text-emerald-300';
-                        entry.textContent = `Resonance triggered (${resonance.toFixed(2)}) between ${a.id} and ${b.id}`;
+                        entry.textContent = `Resonance triggered (${resonance.toFixed(2)}) between ${agentA.id} and ${agentB.id}`;
                         log.prepend(entry);
                         if (log.children.length > 4) log.removeChild(log.lastChild);
                     };
@@ -682,7 +696,7 @@
                 }
             });
 
-            console.log('%c[EarthNet] Landing page with Resonate Examples initialized', 'color:#64748b');
+            console.log('%c[EarthNet] Landing page with animated resonance bars initialized', 'color:#64748b');
         }
 
         window.onload = init;
