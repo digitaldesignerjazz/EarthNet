@@ -9,13 +9,9 @@ subclassed and extended by individual realm branches.
 Quick Start Example:
     from src.earthnet.base import BaseAgent, Swarm, RealmContext, simulate_swarm
 
-    # Create a realm context
     context = RealmContext(name="test-realm", theme="Demo", emotional_bias=0.1)
-
-    # Create and run a basic swarm
     result = simulate_swarm(realm_name="demo", theme="example", steps=5)
 
-    # Or manually construct everything
     agent = BaseAgent("Agent1", "demo-realm", emotional_state=0.6)
     agent.adjust_emotion(0.3, "positive event")
     print(agent.get_emotional_color())   # 'joyfully'
@@ -38,68 +34,28 @@ class RealmContext:
     Realms can extend this with emotional modifiers (e.g., Avalon 'grace' bias,
     Cyberia 'paranoia' pull, Quantum 'superposition' emotional volatility).
 
-    Attributes:
-        name: Unique identifier for the realm (e.g. "realm-avalon")
-        theme: Short thematic description
-        emotional_bias: Subtle pull applied to agents born in or migrating to this realm
-
     Usage Example:
-        >>> ctx = RealmContext(
-        ...     name="realm-mythweaver",
-        ...     theme="Story & Song",
-        ...     emotional_bias=0.12
-        ... )
-        >>> ctx.name
-        'realm-mythweaver'
+        >>> ctx = RealmContext(name="realm-mythweaver", theme="Story & Song", emotional_bias=0.12)
     """
     name: str
     theme: str
     rules: List[str] = field(default_factory=list)
     resources: Dict[str, Any] = field(default_factory=dict)
     lore: str = ""
-    emotional_bias: float = 0.0  # Realm-wide subtle pull on agent emotions (-0.3 to +0.3 typical)
+    emotional_bias: float = 0.0
 
 
 class BaseAgent:
     """Core autonomous agent class with full emotional resonance hooks.
-
-    Every agent carries a dynamic emotional state that influences perception,
-    decision-making, actions, communication, reflection, and self-improvement.
-
-    emotional_state ranges from -1.0 (deep distress) to +1.0 (ecstatic).
-
-    Key Methods:
-        - adjust_emotion(delta, reason)
-        - get_emotional_color()
-        - perceive(), decide(), act(), communicate(), reflect(), evolve()
-        - resonate_with(other)
 
     Usage Example:
         >>> agent = BaseAgent("Explorer", "forest", emotional_state=0.4)
         >>> agent.adjust_emotion(0.5, "found ancient artifact")
         >>> print(agent.get_emotional_color())
         'joyfully'
-        >>> perception = agent.perceive({'type': 'ruins'})
-        >>> print(perception['emotional_tint'])
-        'opportunity'
     """
 
     def __init__(self, agent_id: str, realm: str, **kwargs):
-        """Initialize a new BaseAgent.
-
-        Args:
-            agent_id: Unique identifier for this agent.
-            realm: The realm this agent belongs to.
-            **kwargs: Optional initial values for energy, goals, emotional_state, etc.
-
-        Usage Example:
-            >>> agent = BaseAgent(
-            ...     "Knight",
-            ...     "realm-avalon",
-            ...     emotional_state=0.65,
-            ...     energy=120
-            ... )
-        """
         self.id = agent_id
         self.realm = realm
         self.energy = kwargs.get('energy', 100.0)
@@ -131,11 +87,7 @@ class BaseAgent:
             return "deeply distressed"
 
     def adjust_emotion(self, delta: float, reason: str = "") -> float:
-        """Primary hook to shift emotional state.
-
-        Realms and external systems should call this (or subclass) rather than
-        directly mutating emotional_state for proper logging and clamping.
-        """
+        """Primary hook to shift emotional state."""
         old_state = self.emotional_state
         self.emotional_state += delta
         self._clamp_emotion()
@@ -216,7 +168,20 @@ class BaseAgent:
         return flavor
 
     def communicate(self, other: 'BaseAgent') -> Tuple[str, float]:
-        """Exchange with emotional resonance."""
+        """Exchange information with another agent while performing emotional resonance.
+
+        This is one of the core mechanisms for inter-agent emotional contagion.
+        The resonance strength is calculated based on how close their emotional
+        states are. Both agents then move slightly toward each other's emotional
+        average.
+
+        Usage Example (Resonance):
+            >>> agent1 = BaseAgent("A1", "test", emotional_state=0.8)
+            >>> agent2 = BaseAgent("A2", "test", emotional_state=0.2)
+            >>> msg, res = agent1.communicate(agent2)
+            >>> print(f"Resonance strength: {res:.2f}")
+            # High resonance because they are emotionally close after adjustment
+        """
         if self.energy < 8:
             return f"{self.id} is too depleted to reach out to {other.id}", 0.0
 
@@ -248,7 +213,22 @@ class BaseAgent:
         return msg, resonance
 
     def resonate_with(self, other: 'BaseAgent') -> float:
-        """Dedicated emotional resonance hook."""
+        """Dedicated method to perform emotional resonance with another agent.
+
+        This is a convenience wrapper around communicate() focused purely on
+        the emotional exchange. Very useful when you want to simulate resonance
+        without generating full communication logs.
+
+        Usage Example (Resonate Examples):
+            >>> agent1 = BaseAgent("Harmonious", "test", emotional_state=0.7)
+            >>> agent2 = BaseAgent("Dissonant", "test", emotional_state=-0.4)
+            >>> resonance = agent1.resonate_with(agent2)
+            >>> print(f"Resonance strength between agents: {resonance:.2f}")
+            # Lower resonance because their emotional states are far apart
+
+            >>> # After resonance, their emotions move closer together
+            >>> print(agent1.emotional_state, agent2.emotional_state)
+        """
         _, resonance = self.communicate(other)
         return resonance
 
@@ -258,22 +238,21 @@ class BaseAgent:
             return f"{self.id} has no experiences to reflect upon yet."
 
         recent = self.memory[-min(6, len(self.memory)):]
-        emotion_impact = self.emotional_state * 0.1
 
         reflection = f"{self.get_emotional_color()} {self.id} reflects on recent events. "
 
         if self.emotional_state > 0.4:
-            reflection += "Positive momentum suggests expanding goals and sharing more widely."
+            reflection += "Positive momentum suggests expanding goals."
             if 'innovate' not in self.goals:
                 self.goals.append('innovate_boldly')
             self.adjust_emotion(0.05, "optimistic reflection")
         elif self.emotional_state < -0.3:
-            reflection += "Distress signals need for rest, support, or cautious adaptation."
-            if 'rest_efficiently' not in self.goals and 'heal' not in self.goals:
+            reflection += "Distress signals need for rest and healing."
+            if 'heal' not in self.goals:
                 self.goals.append('heal_and_recover')
             self.adjust_emotion(0.08, "healing reflection")
         else:
-            reflection += "Balanced perspective. Considering measured next steps."
+            reflection += "Balanced perspective."
 
         self.memory.append({'type': 'reflection', 'content': reflection, 'emotion': round(self.emotional_state, 2)})
         return reflection
@@ -372,7 +351,6 @@ class Swarm:
                 agent.adjust_emotion(0.04, "rest and emotional recovery")
                 logs.append(f"{agent.get_emotional_color()} {agent.id} rests and recovers ({agent.energy:.1f} energy, emotion={agent.emotional_state:.2f})")
 
-        # Emotional resonance phase
         for _ in range(max(1, len(self.agents) // 3)):
             a1, a2 = random.sample(self.agents, 2)
             if a1.id != a2.id:
@@ -391,9 +369,6 @@ class Swarm:
                 agent.adjust_emotion(0.06, "harmonic swarm resonance")
             logs.append(f"🌟 HARMONIC RESONANCE EVENT!")
 
-        if verbose:
-            print("\n".join(logs))
-
         return logs
 
     def run_simulation(self, steps: int = 4, verbose: bool = True) -> str:
@@ -409,8 +384,7 @@ class Swarm:
             all_logs.append(evol)
 
         final_metrics = self._compute_emotional_metrics()
-        summary = (f"\nSwarm '{self.name}' completed {steps} steps. "
-                   f"Final avg emotion: {final_metrics['avg']:.2f}")
+        summary = f"\nSwarm '{self.name}' completed {steps} steps. Final avg emotion: {final_metrics['avg']:.2f}"
         all_logs.append(summary)
 
         if verbose:
@@ -420,11 +394,10 @@ class Swarm:
 
 def simulate_swarm(realm_name: str = "main", theme: str = "foundational", steps: int = 4,
                  emotional_bias: float = 0.0) -> str:
-    """Quick entrypoint to instantiate and run a basic swarm with emotional resonance.
+    """Quick entrypoint to run a swarm with emotional resonance.
 
     Usage Example:
-        >>> result = simulate_swarm(realm_name="avalon", theme="Noble", steps=6, emotional_bias=0.1)
-        >>> print("Simulation finished")
+        >>> result = simulate_swarm(realm_name="avalon", steps=6, emotional_bias=0.1)
     """
     context = RealmContext(name=realm_name, theme=theme, emotional_bias=emotional_bias)
     swarm = Swarm(name="CoreSwarm", realm_context=context, num_agents=5)
@@ -433,23 +406,35 @@ def simulate_swarm(realm_name: str = "main", theme: str = "foundational", steps:
 
 if __name__ == "__main__":
     print("=" * 70)
-    print("EarthNet Base Module - Usage Examples")
+    print("EarthNet Base Module - Usage Examples (Including Resonance)")
     print("=" * 70)
 
     print("\n1. Basic Agent Creation and Emotional Modulation")
     agent = BaseAgent("TestAgent", "demo-realm", emotional_state=0.3)
-    print(f"   Created agent with emotion: {agent.emotional_state}")
     agent.adjust_emotion(0.6, "major discovery")
-    print(f"   After positive event: {agent.emotional_state} ({agent.get_emotional_color()})")
+    print(f"   After event: {agent.emotional_state} ({agent.get_emotional_color()})")
 
-    print("\n2. Running a Simple Swarm Simulation")
+    print("\n2. Running a Swarm Simulation")
     result = simulate_swarm(realm_name="demo", theme="Usage Example", steps=4, emotional_bias=0.08)
-    print("   Simulation completed successfully.")
 
-    print("\n3. Manual Swarm Construction")
-    context = RealmContext(name="custom", theme="Advanced Demo", emotional_bias=0.05)
-    swarm = Swarm("CustomSwarm", context, num_agents=3)
-    swarm.run_simulation(steps=3, verbose=True)
+    print("\n3. Resonance Between Two Agents (Resonate Examples)")
+    agent1 = BaseAgent("HarmoniousOne", "test", emotional_state=0.75)
+    agent2 = BaseAgent("DissonantOne", "test", emotional_state=-0.35)
+
+    print(f"   Before resonance:\n     {agent1.id}: {agent1.emotional_state:.2f}\n     {agent2.id}: {agent2.emotional_state:.2f}")
+
+    resonance_strength = agent1.resonate_with(agent2)
+    print(f"   Resonance strength: {resonance_strength:.2f}")
+
+    print(f"   After resonance:\n     {agent1.id}: {agent1.emotional_state:.2f}\n     {agent2.id}: {agent2.emotional_state:.2f}")
+
+    print("\n4. Multiple Resonance Interactions (Emotional Contagion Over Time)")
+    agent_a = BaseAgent("Optimist", "test", emotional_state=0.8)
+    agent_b = BaseAgent("Pessimist", "test", emotional_state=-0.6)
+
+    for i in range(3):
+        res = agent_a.resonate_with(agent_b)
+        print(f"   Step {i+1} - Resonance: {res:.2f} | Optimist: {agent_a.emotional_state:.2f}, Pessimist: {agent_b.emotional_state:.2f}")
 
     print("\n" + "=" * 70)
     print("All usage examples completed.")
