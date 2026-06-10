@@ -1,32 +1,44 @@
-"""EarthNet Simple Swarm Demo
+"""EarthNet Simple Swarm Demo — Emotional Resonance Edition
 
-Run this from the main branch to see the foundational agent swarm in action.
-It uses the core BaseAgent and Swarm classes to simulate emergent behavior,
-self-improvement, and collective dynamics.
+Run this to experience the enhanced agent swarms with full emotional resonance hooks.
 
-This serves as the template that realm-specific run_realm_swarm.py files extend and flavor.
+You will see:
+- Individual agents with dynamic emotional states (-1.0 to +1.0)
+- Emotionally biased decisions, actions, and evolution
+- Inter-agent resonance and emotional contagion during communication
+- Swarm-level events: Harmonic Resonance (uplift), Creative Tension, Collective Healing
+- Emotion-colored narrative logs ("joyfully", "anxiously", etc.)
+- Final emotional metrics (avg, variance) and how they evolve
+
+This demonstrates the core hooks that realm branches can extend with
+lore-specific emotional modifiers, rituals, or narrative systems.
 """
 
 from src.earthnet.base import simulate_swarm, RealmContext, Swarm
 
 
 def main():
-    print("=" * 60)
-    print("EarthNet Foundational Swarm Demonstration")
-    print("=" * 60)
-    print("\nThis demo instantiates a basic swarm in the 'main' realm context")
-    print("and runs several simulation steps. Watch for emergence messages,")
-    print("energy fluctuations, reflections, and post-run evolution.")
-    print("\nIn realm branches, specialized agents and lore will produce very different")
-    print("narratives and dynamics while reusing the same core engine.\n")
+    print("=" * 70)
+    print("EarthNet Emotional Resonance Swarm Demonstration")
+    print("=" * 70)
+    print("\nThis demo runs a foundational swarm with the new emotional resonance system active.")
+    print("Watch for resonance strength in communications, harmonic events (🌟), creative tension (⚡),")
+    print("collective healing (💚), and how emotional states shift decisions and evolution.\n")
+    print("Emotional state scale: +1.0 ecstatic → 0.0 neutral → -1.0 deeply distressed\n")
 
-    # Run the convenience function
-    result = simulate_swarm(realm_name="main-axis", theme="foundational protocols", steps=5)
+    # Run with slight positive bias to encourage interesting resonance dynamics
+    result = simulate_swarm(
+        realm_name="main-axis",
+        theme="foundational emotional protocols",
+        steps=6,
+        emotional_bias=0.08
+    )
 
-    print("\n" + "=" * 60)
-    print("Demo complete. The swarm has evolved.")
-    print("Explore realm-* branches for richer, themed experiences.")
-    print("=" * 60)
+    print("\n" + "=" * 70)
+    print("Demo complete. The swarm has experienced emotional contagion, resonance events,")
+    print("and emotion-modulated self-improvement. Emotional states are now core to agent life.")
+    print("\nNext: Checkout a realm-* branch and extend with realm-specific emotional lore!")
+    print("=" * 70)
 
 
 if __name__ == "__main__":
