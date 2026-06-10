@@ -1,18 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EarthNet • A Multiverse of Emotionally Resonant Agent Swarms</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@500;600&display=swap');
+        
+        body {
+            font-family: 'Inter', system_ui, sans-serif;
+        }
+        
+        .font-display {
+            font-family: 'Space Grotesk', 'Inter', system_ui, sans-serif;
+            font-weight: 600;
+            letter-spacing: -0.025em;
+        }
+
+        .cosmic-bg {
+            background: radial-gradient(circle at center, #0f172a 0%, #020617 100%);
+        }
+
+        .section-header {
+            font-size: 2.25rem;
+            line-height: 2.5rem;
+            font-weight: 600;
+            letter-spacing: -0.04em;
+        }
+
+        .realm-card {
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+                        box-shadow 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+        }
+        .realm-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .nav-link {
+            transition: color 0.2s ease;
+        }
+        .nav-link:hover {
+            color: #c5a46e;
+        }
+
+        .emotion-bar {
+            transition: width 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.3s ease;
+        }
+
+        .agent-dot {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .resonance-value {
+            font-variant-numeric: tabular-nums;
+        }
+
+        .metric-value {
+            font-variant-numeric: tabular-nums;
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-200 cosmic-bg">
+    <!-- Navigation -->
+    <nav class="border-b border-white/10 bg-slate-950/80 backdrop-blur-lg sticky top-0 z-50">
+        <div class="max-w-screen-2xl mx-auto">
+            <div class="px-8 py-5 flex items-center justify-between">
+                <div class="flex items-center gap-x-3">
+                    <div class="w-9 h-9 rounded-2xl bg-gradient-to-br from-amber-400 via-yellow-500 to-orange-500 flex items-center justify-center">
+                        <i class="fa-solid fa-infinity text-slate-950 text-3xl"></i>
+                    </div>
+                    <div>
+                        <span class="font-display text-3xl tracking-tighter font-semibold">EarthNet</span>
+                    </div>
+                </div>
+                
+                <div class="hidden md:flex items-center gap-x-8 text-sm">
+                    <a href="#vision" class="nav-link text-slate-300 hover:text-white">Vision</a>
+                    <a href="#resonance" class="nav-link text-slate-300 hover:text-white">Resonance</a>
+                    <a href="#realms" class="nav-link text-slate-300 hover:text-white">The Realms</a>
+                    <a href="#demo" class="nav-link text-slate-300 hover:text-white">Live Demo</a>
+                </div>
+
+                <div class="flex items-center gap-x-3">
+                    <a href="https://github.com/digitaldesignerjazz/EarthNet" 
+                       class="px-4 py-2 text-sm font-medium border border-white/20 hover:bg-white/5 rounded-3xl flex items-center gap-x-2 transition-colors">
+                        <i class="fa-brands fa-github"></i>
+                        <span class="hidden sm:inline">GitHub</span>
+                    </a>
+                    <a href="#get-started" 
+                       class="px-5 py-2.5 text-sm font-semibold bg-white text-slate-950 hover:bg-amber-100 transition-all rounded-3xl flex items-center gap-x-2">
+                        <span>Clone & Explore</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <div class="max-w-screen-2xl mx-auto px-8 pt-16 pb-20">
+        <div class="max-w-4xl">
+            <div class="inline-flex items-center gap-x-2 px-4 py-1.5 rounded-3xl border border-white/10 bg-white/5 text-sm mb-6">
+                <div class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
+                <span class="text-emerald-400 font-medium">Now with Emotional Resonance</span>
+            </div>
+
+            <h1 class="font-display text-7xl md:text-8xl tracking-tighter leading-none mb-6">
+                A living multiverse.<br>
+                <span class="bg-gradient-to-r from-amber-300 via-yellow-400 to-orange-400 bg-clip-text text-transparent">Branching realities.</span><br>
+                Emotionally resonant swarms.
+            </h1>
+            
+            <p class="max-w-2xl text-2xl text-slate-300 tracking-tight">
+                EarthNet is a decentralized framework where Git branches become living realms, 
+                and autonomous agent swarms evolve with genuine emotional depth.
+            </p>
+
+            <div class="flex flex-wrap items-center gap-4 mt-10">
+                <a href="https://github.com/digitaldesignerjazz/EarthNet" 
+                   class="inline-flex items-center justify-center gap-x-3 px-8 h-14 rounded-3xl bg-white text-xl font-semibold text-slate-950 hover:bg-amber-100 active:scale-[0.985] transition-all">
+                    <i class="fa-brands fa-github text-2xl"></i>
+                    <span>View on GitHub</span>
+                </a>
+                
+                <a href="#demo" 
+                   class="inline-flex items-center justify-center gap-x-3 px-8 h-14 rounded-3xl border border-white/30 hover:bg-white/5 text-xl font-medium transition-all">
+                    <span>Try the Resonance Demo</span>
+                </a>
+            </div>
+
+            <div class="mt-8 flex items-center gap-x-6 text-sm text-slate-400">
+                <div class="flex items-center gap-x-2">
+                    <i class="fa-solid fa-code-branch"></i>
+                    <span>8 branches • 7 living realms</span>
+                </div>
+                <div class="w-px h-3 bg-white/20"></div>
+                <div>MIT Licensed</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Vision -->
+    <div id="vision" class="max-w-screen-2xl mx-auto px-8 py-16 border-t border-white/10">
+        <div class="max-w-3xl">
+            <div class="uppercase tracking-[3px] text-xs font-semibold text-amber-400 mb-3">THE VISION</div>
+            <h2 class="section-header tracking-tighter mb-6">Git as a Multiverse.<br>Agents as Living Minds.</h2>
+            
+            <div class="prose prose-invert text-xl text-slate-300 max-w-none">
+                <p>Every branch is a parallel reality. Every agent swarm is a chorus of minds that feel, resonate, and evolve together.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Emotional Resonance Highlight -->
+    <div id="resonance" class="max-w-screen-2xl mx-auto px-8 py-20 bg-slate-900/60 border-y border-white/10">
+        <div class="max-w-screen-xl mx-auto">
+            <div class="grid md:grid-cols-12 gap-x-12 items-center">
+                <div class="md:col-span-5">
+                    <div class="uppercase tracking-[3px] text-xs font-semibold text-cyan-400 mb-3">EMOTIONAL RESONANCE</div>
+                    <h2 class="section-header tracking-tighter mb-6">Swarms that feel.</h2>
+                    <p class="text-xl text-slate-300">
+                        Agents carry dynamic emotional states that influence every decision, 
+                        relationship, and act of self-improvement.
+                    </p>
+                    
+                    <div class="mt-8 space-y-4">
+                        <div class="flex items-start gap-4">
+                            <div class="mt-1 w-6 h-6 rounded-2xl bg-cyan-500/10 flex-shrink-0 flex items-center justify-center">
+                                <i class="fa-solid fa-heart text-cyan-400"></i>
+                            </div>
+                            <div>
+                                <div class="font-semibold">Emotional Contagion</div>
+                                <div class="text-slate-400 text-sm">Agents influence each other’s inner states through resonant communication.</div>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="mt-1 w-6 h-6 rounded-2xl bg-cyan-500/10 flex-shrink-0 flex items-center justify-center">
+                                <i class="fa-solid fa-users text-cyan-400"></i>
+                            </div>
+                            <div>
+                                <div class="font-semibold">Collective Emotional Events</div>
+                                <div class="text-slate-400 text-sm">Harmonic resonance, creative tension, and swarm-wide healing emerge naturally.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="md:col-span-7 mt-12 md:mt-0">
+                    <div class="bg-slate-950 border border-white/10 rounded-3xl p-8">
+                        <div class="text-sm uppercase tracking-widest text-slate-400 mb-4">EMERGENT PHENOMENA</div>
+                        
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                            <div class="bg-slate-900 border border-white/10 rounded-3xl p-5">
+                                <div class="text-emerald-400 text-3xl mb-3"><i class="fa-solid fa-sun"></i></div>
+                                <div class="font-semibold text-lg">Harmonic Resonance</div>
+                                <div class="text-xs text-slate-400 mt-1">When the swarm synchronizes emotionally, collective energy and insight surge.</div>
+                            </div>
+                            <div class="bg-slate-900 border border-white/10 rounded-3xl p-5">
+                                <div class="text-amber-400 text-3xl mb-3"><i class="fa-solid fa-bolt"></i></div>
+                                <div class="font-semibold text-lg">Creative Tension</div>
+                                <div class="text-xs text-slate-400 mt-1">High emotional variance sparks innovation and paradigm-level breakthroughs.</div>
+                            </div>
+                            <div class="bg-slate-900 border border-white/10 rounded-3xl p-5">
+                                <div class="text-rose-400 text-3xl mb-3"><i class="fa-solid fa-hand-holding-heart"></i></div>
+                                <div class="font-semibold text-lg">Collective Healing</div>
+                                <div class="text-xs text-slate-400 mt-1">Distressed agents receive emotional and energetic support from the swarm.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- The Realms -->
+    <div id="realms" class="max-w-screen-2xl mx-auto px-8 py-20">
         <div class="max-w-3xl mb-10">
             <div class="uppercase tracking-[3px] text-xs font-semibold text-amber-400 mb-3">THE MULTIVERSE</div>
             <h2 class="section-header tracking-tighter">The Realms (Current Living Branches)</h2>
-            <p class="text-xl text-slate-300 mt-3">Each branch is a complete parallel reality. All inherit the core emotional resonance system and extend it with unique lore, agent archetypes, and emotional flavors.</p>
+            <p class="text-xl text-slate-300 mt-3">Each branch is a complete parallel reality. All inherit the core emotional resonance system and extend it with unique lore and emotional flavors.</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
-            <!-- Realm Cards with richer descriptions -->
             <div class="realm-card bg-slate-900 border border-white/10 rounded-3xl p-6 hover:border-amber-400/30">
                 <div class="flex items-center gap-x-3 mb-4">
                     <div class="text-3xl">⚡</div>
                     <div class="font-semibold text-xl">realm-nova</div>
                 </div>
                 <div class="text-amber-300 text-sm font-medium mb-2">THE FORGE OF INNOVATION</div>
-                <p class="text-slate-400 text-sm leading-relaxed">Mesh networking, blockchain, self-improving AI. Focused excitement and technical curiosity with strong harmonic breakthroughs.</p>
+                <p class="text-slate-400 text-sm leading-relaxed">Mesh networking, blockchain, self-improving AI. Focused excitement with strong harmonic breakthroughs.</p>
             </div>
 
             <div class="realm-card bg-slate-900 border border-white/10 rounded-3xl p-6 hover:border-amber-400/30">
@@ -21,7 +238,7 @@
                     <div class="font-semibold text-xl">realm-avalon</div>
                 </div>
                 <div class="text-amber-300 text-sm font-medium mb-2">THE ENCHANTED ISLE</div>
-                <p class="text-slate-400 text-sm leading-relaxed">Noble quests, mythic wisdom, chivalric coordination. Warm, noble, deeply resonant — prone to powerful harmonic events and healing.</p>
+                <p class="text-slate-400 text-sm leading-relaxed">Noble quests, mythic wisdom. Warm and deeply resonant — prone to powerful harmonic events.</p>
             </div>
 
             <div class="realm-card bg-slate-900 border border-white/10 rounded-3xl p-6 hover:border-amber-400/30">
@@ -30,7 +247,7 @@
                     <div class="font-semibold text-xl">realm-cyberia</div>
                 </div>
                 <div class="text-amber-300 text-sm font-medium mb-2">THE NEON VEIL</div>
-                <p class="text-slate-400 text-sm leading-relaxed">Privacy maximalism, shadow networks, creative tension. Often carries productive dissonance with occasional deep protective healing.</p>
+                <p class="text-slate-400 text-sm leading-relaxed">Privacy maximalism and shadow networks. Often carries productive dissonance with occasional deep healing.</p>
             </div>
 
             <div class="realm-card bg-slate-900 border border-white/10 rounded-3xl p-6 hover:border-amber-400/30">
@@ -39,7 +256,7 @@
                     <div class="font-semibold text-xl">realm-quantum</div>
                 </div>
                 <div class="text-amber-300 text-sm font-medium mb-2">THE FRACTAL MIRROR</div>
-                <p class="text-slate-400 text-sm leading-relaxed">Recursive consciousness, emotional superposition. Highly volatile states capable of dramatic harmonic convergences.</p>
+                <p class="text-slate-400 text-sm leading-relaxed">Recursive consciousness and emotional superposition. Highly volatile states with dramatic convergences.</p>
             </div>
 
             <div class="realm-card bg-slate-900 border border-white/10 rounded-3xl p-6 hover:border-amber-400/30">
@@ -48,7 +265,7 @@
                     <div class="font-semibold text-xl">realm-mythweaver</div>
                 </div>
                 <div class="text-amber-300 text-sm font-medium mb-2">THE TAPESTRY OF STORY</div>
-                <p class="text-slate-400 text-sm leading-relaxed">Narrative intelligence, story as emotional contagion. Extremely strong resonance and collaborative myth-making.</p>
+                <p class="text-slate-400 text-sm leading-relaxed">Narrative intelligence and story as emotional contagion. Extremely strong resonance mechanics.</p>
             </div>
 
             <div class="realm-card bg-slate-900 border border-white/10 rounded-3xl p-6 hover:border-amber-400/30">
@@ -57,7 +274,7 @@
                     <div class="font-semibold text-xl">realm-esslinger</div>
                 </div>
                 <div class="text-amber-300 text-sm font-medium mb-2">THE ETERNAL HOUSE</div>
-                <p class="text-slate-400 text-sm leading-relaxed">Legacy stewardship, multi-generational value networks. Dignified warmth with strategic focus and healing during challenges.</p>
+                <p class="text-slate-400 text-sm leading-relaxed">Legacy stewardship and value networks. Dignified warmth with strategic focus and healing.</p>
             </div>
 
             <div class="realm-card bg-slate-900 border border-white/10 rounded-3xl p-6 hover:border-amber-400/30">
@@ -66,7 +283,7 @@
                     <div class="font-semibold text-xl">realm-template</div>
                 </div>
                 <div class="text-amber-300 text-sm font-medium mb-2">THE BLANK CODEX</div>
-                <p class="text-slate-400 text-sm leading-relaxed">Clean seed for birthing new realms. Preserves full compatibility with emotional resonance and swarm systems.</p>
+                <p class="text-slate-400 text-sm leading-relaxed">Clean seed for birthing new realms while preserving full emotional resonance compatibility.</p>
             </div>
         </div>
 
@@ -76,3 +293,399 @@
                 Read full realm lore & dynamics in the Charter →
             </a>
         </div>
+    </div>
+
+    <!-- Interactive Emotional Resonance Demo -->
+    <div id="demo" class="max-w-screen-2xl mx-auto px-8 py-16 border-t border-white/10 bg-slate-900/40">
+        <div class="max-w-screen-xl mx-auto">
+            <div class="max-w-2xl mb-10">
+                <div class="uppercase tracking-[3px] text-xs font-semibold text-cyan-400 mb-3">INTERACTIVE DEMO</div>
+                <h2 class="section-header tracking-tighter">Feel the Resonance</h2>
+                <p class="text-xl text-slate-300">Adjust emotional states and watch resonance, contagion, and collective events emerge in real time.</p>
+            </div>
+
+            <div class="bg-slate-950 border border-white/10 rounded-3xl p-8">
+                <!-- Agent Controls -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" id="agent-controls">
+                    <!-- Populated by JavaScript -->
+                </div>
+
+                <div class="mt-8 grid grid-cols-1 lg:grid-cols-12 gap-6">
+                    <!-- Metrics -->
+                    <div class="lg:col-span-5 bg-slate-900 border border-white/10 rounded-3xl p-6">
+                        <div class="text-sm font-medium text-slate-400 mb-4">SWARM EMOTIONAL METRICS</div>
+                        
+                        <div class="space-y-5">
+                            <div>
+                                <div class="flex justify-between text-sm mb-1.5">
+                                    <div>Average Emotion</div>
+                                    <div id="avg-emotion" class="font-mono metric-value">0.42</div>
+                                </div>
+                                <div class="h-2 bg-slate-800 rounded-full overflow-hidden">
+                                    <div id="avg-bar" class="h-2 bg-gradient-to-r from-cyan-400 to-emerald-400 rounded-full" style="width: 71%"></div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <div class="flex justify-between text-sm mb-1.5">
+                                    <div>Emotional Variance</div>
+                                    <div id="variance" class="font-mono metric-value">0.18</div>
+                                </div>
+                                <div class="h-2 bg-slate-800 rounded-full overflow-hidden">
+                                    <div id="var-bar" class="h-2 bg-amber-400 rounded-full" style="width: 45%"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="event-log" class="mt-6 text-xs space-y-1 min-h-[72px] font-mono text-emerald-300">
+                            <!-- Dynamic event messages -->
+                        </div>
+                    </div>
+
+                    <!-- Resonance Visual -->
+                    <div class="lg:col-span-7 bg-slate-900 border border-white/10 rounded-3xl p-6">
+                        <div class="flex justify-between items-center mb-4">
+                            <div class="text-sm font-medium text-slate-400">LIVE RESONANCE</div>
+                            <button onclick="stepSwarm()" 
+                                    class="px-5 py-1.5 text-xs font-semibold bg-white/10 hover:bg-white/15 active:bg-white/5 rounded-2xl flex items-center gap-x-2 transition-colors">
+                                <i class="fa-solid fa-sync-alt"></i>
+                                <span>Advance Step</span>
+                            </button>
+                        </div>
+
+                        <div id="resonance-visual" class="flex flex-wrap gap-4 justify-center py-4">
+                            <!-- Agent visual dots populated by JS -->
+                        </div>
+
+                        <div class="text-[10px] text-center text-slate-500 mt-2">Resonance strength between agents appears when alignment is high</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NEW: Resonate Examples Section -->
+            <div class="mt-10 bg-slate-950 border border-white/10 rounded-3xl p-8">
+                <div class="mb-6">
+                    <div class="uppercase tracking-[3px] text-xs font-semibold text-cyan-400 mb-2">RESONATE EXAMPLES</div>
+                    <h3 class="text-2xl font-semibold tracking-tight">Agent-to-Agent Emotional Contagion</h3>
+                    <p class="text-slate-400 mt-2">See how individual agents influence each other through resonance. This is the core mechanic behind <code>resonate_with()</code> and <code>communicate()</code>.</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <!-- Pairwise Resonance Table -->
+                    <div>
+                        <div class="text-sm font-medium text-slate-400 mb-3">Current Pairwise Resonance</div>
+                        <div id="pairwise-resonance" class="bg-slate-900 border border-white/10 rounded-2xl p-4 text-sm font-mono space-y-2">
+                            <!-- Populated dynamically by JS -->
+                        </div>
+                    </div>
+
+                    <!-- Manual Resonance Controls -->
+                    <div>
+                        <div class="text-sm font-medium text-slate-400 mb-3">Trigger Resonance Manually</div>
+                        <div class="flex flex-wrap gap-2" id="resonate-buttons">
+                            <!-- Buttons populated by JS -->
+                        </div>
+                        <div class="mt-4 text-xs text-slate-500">
+                            Click to force two agents to resonate. Watch how their emotional states move closer together.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Getting Started -->
+    <div id="get-started" class="max-w-screen-2xl mx-auto px-8 py-20">
+        <div class="max-w-3xl">
+            <h2 class="section-header tracking-tighter mb-6">Begin Your Journey</h2>
+            
+            <div class="bg-slate-900 border border-white/10 rounded-3xl p-8 font-mono text-sm">
+                <div class="text-emerald-400 mb-4"># Clone the multiverse</div>
+                <div class="text-slate-300">git clone https://github.com/digitaldesignerjazz/EarthNet.git</div>
+                <div class="text-slate-300 mt-1">cd EarthNet</div>
+                <div class="mt-4 text-emerald-400"># Run the emotional resonance demo</div>
+                <div class="text-slate-300">python examples/simple_swarm_demo.py</div>
+            </div>
+
+            <p class="mt-6 text-slate-400">Explore the <code class="bg-white/10 px-1.5 py-px rounded">main</code> branch for the core engine, then checkout any <code class="bg-white/10 px-1.5 py-px rounded">realm-*</code> branch to enter a living parallel reality.</p>
+
+            <a href="https://github.com/digitaldesignerjazz/EarthNet/blob/main/README.md" 
+               class="inline-flex items-center gap-x-2 mt-6 text-amber-400 hover:text-amber-300 font-medium">
+                Read the full charter →
+            </a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/10 py-12">
+        <div class="max-w-screen-2xl mx-auto px-8 text-sm text-slate-400">
+            <div class="flex flex-col md:flex-row justify-between gap-y-4">
+                <div>
+                    EarthNet is an open exploration in decentralized intelligence, emotional AI, and mythic technology.<br>
+                    Created with curiosity in Hannover, 2026.
+                </div>
+                <div class="flex gap-x-6">
+                    <a href="https://github.com/digitaldesignerjazz/EarthNet" class="hover:text-white">Repository</a>
+                    <a href="https://github.com/digitaldesignerjazz/EarthNet/blob/main/README.md" class="hover:text-white">Charter</a>
+                    <a href="https://github.com/digitaldesignerjazz/EarthNet/blob/main/LICENSE" class="hover:text-white">MIT License</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Tailwind script
+        function initializeTailwind() {
+            document.documentElement.style.setProperty('--accent-gold', '#c5a46e');
+        }
+
+        // === Interactive Emotional Resonance Demo ===
+        let agents = [
+            { id: 'Aether', emotion: 0.65, color: '#67e8f9' },
+            { id: 'Lumen', emotion: 0.38, color: '#c5a46e' },
+            { id: 'Vesper', emotion: -0.12, color: '#f472b6' },
+            { id: 'Sol', emotion: 0.81, color: '#a78bfa' }
+        ];
+
+        function createAgentControls() {
+            const container = document.getElementById('agent-controls');
+            container.innerHTML = '';
+
+            agents.forEach((agent, index) => {
+                const div = document.createElement('div');
+                div.className = 'bg-slate-900 border border-white/10 rounded-3xl p-5';
+                
+                div.innerHTML = `
+                    <div class="flex justify-between items-center mb-3">
+                        <div class="font-semibold">${agent.id}</div>
+                        <div class="font-mono text-xs px-2.5 py-px rounded-2xl bg-white/5" id="emotion-value-${index}">
+                            ${agent.emotion.toFixed(2)}
+                        </div>
+                    </div>
+                    
+                    <input type="range" 
+                           min="-1" max="1" step="0.01" 
+                           value="${agent.emotion}"
+                           class="w-full accent-white"
+                           oninput="updateAgentEmotion(${index}, this.value)">
+                    
+                    <div class="flex justify-between text-[10px] text-slate-500 mt-1.5">
+                        <div>Distressed</div>
+                        <div>Ecstatic</div>
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+            
+            updatePairwiseResonance();
+            updateResonateButtons();
+        }
+
+        function updateAgentEmotion(index, value) {
+            agents[index].emotion = parseFloat(value);
+            document.getElementById(`emotion-value-${index}`).textContent = agents[index].emotion.toFixed(2);
+            updateMetricsAndVisual();
+        }
+
+        function updateMetricsAndVisual() {
+            const emotions = agents.map(a => a.emotion);
+            const avg = emotions.reduce((a, b) => a + b, 0) / emotions.length;
+            const variance = emotions.reduce((sum, e) => sum + Math.pow(e - avg, 2), 0) / emotions.length;
+
+            document.getElementById('avg-emotion').textContent = avg.toFixed(2);
+            document.getElementById('variance').textContent = variance.toFixed(2);
+            
+            const avgPercent = Math.max(0, Math.min(100, ((avg + 1) / 2) * 100));
+            document.getElementById('avg-bar').style.width = `${avgPercent}%`;
+            document.getElementById('var-bar').style.width = `${Math.min(100, variance * 180)}%`;
+
+            updateResonanceVisual(avg, variance);
+            updatePairwiseResonance();
+
+            if (Math.random() < 0.18) {
+                showRandomEvent(avg, variance);
+            }
+        }
+
+        function updateResonanceVisual(avg, variance) {
+            const container = document.getElementById('resonance-visual');
+            container.innerHTML = '';
+
+            agents.forEach((agent, i) => {
+                const size = 52 + (agent.emotion * 18);
+                const dot = document.createElement('div');
+                dot.className = `agent-dot flex items-center justify-center text-xs font-mono border-2 cursor-pointer`;
+                dot.style.width = `${Math.max(42, size)}px`;
+                dot.style.height = `${Math.max(42, size)}px`;
+                dot.style.backgroundColor = agent.color + '20';
+                dot.style.borderColor = agent.color;
+                dot.style.color = agent.color;
+                dot.innerHTML = `<div class="font-semibold">${agent.id}</div>`;
+                dot.title = `${agent.id}: ${agent.emotion.toFixed(2)}`;
+                
+                dot.onclick = () => {
+                    agent.emotion = Math.max(-1, Math.min(1, agent.emotion + (Math.random() - 0.5) * 0.4));
+                    createAgentControls();
+                    updateMetricsAndVisual();
+                };
+                
+                container.appendChild(dot);
+            });
+
+            if (variance < 0.15 && avg > 0.4) {
+                const note = document.createElement('div');
+                note.className = 'text-center text-emerald-400 text-xs mt-3 w-full';
+                note.innerHTML = `✨ Strong collective resonance detected`;
+                container.appendChild(note);
+            }
+        }
+
+        function updatePairwiseResonance() {
+            const container = document.getElementById('pairwise-resonance');
+            container.innerHTML = '';
+
+            for (let i = 0; i < agents.length; i++) {
+                for (let j = i + 1; j < agents.length; j++) {
+                    const a = agents[i];
+                    const b = agents[j];
+                    const diff = Math.abs(a.emotion - b.emotion);
+                    const resonance = Math.max(0, 1 - diff).toFixed(2);
+
+                    const div = document.createElement('div');
+                    div.className = 'flex justify-between items-center py-1 border-b border-white/10 last:border-b-0';
+                    div.innerHTML = `
+                        <span>${a.id} ↔ ${b.id}</span>
+                        <span class="font-semibold ${resonance > 0.7 ? 'text-emerald-400' : resonance > 0.4 ? 'text-amber-400' : 'text-rose-400'}">
+                            ${resonance}
+                        </span>
+                    `;
+                    container.appendChild(div);
+                }
+            }
+        }
+
+        function updateResonateButtons() {
+            const container = document.getElementById('resonate-buttons');
+            container.innerHTML = '';
+
+            for (let i = 0; i < agents.length; i++) {
+                for (let j = i + 1; j < agents.length; j++) {
+                    const btn = document.createElement('button');
+                    btn.className = 'px-3 py-1 text-xs bg-white/10 hover:bg-white/20 rounded-xl transition-colors';
+                    btn.textContent = `${agents[i].id} ↔ ${agents[j].id}`;
+                    
+                    btn.onclick = () => {
+                        const a = agents[i];
+                        const b = agents[j];
+                        
+                        const diff = Math.abs(a.emotion - b.emotion);
+                        const resonance = Math.max(0, 1 - diff);
+                        
+                        // Apply resonance effect
+                        const avg = (a.emotion + b.emotion) / 2;
+                        const shift = (avg - a.emotion) * (0.25 + 0.3 * resonance);
+                        
+                        a.emotion = Math.max(-1, Math.min(1, a.emotion + shift));
+                        b.emotion = Math.max(-1, Math.min(1, b.emotion + (avg - b.emotion) * (0.25 + 0.3 * resonance)));
+                        
+                        createAgentControls();
+                        updateMetricsAndVisual();
+                        
+                        // Show feedback
+                        const log = document.getElementById('event-log');
+                        const entry = document.createElement('div');
+                        entry.className = 'text-emerald-300';
+                        entry.textContent = `Resonance triggered (${resonance.toFixed(2)}) between ${a.id} and ${b.id}`;
+                        log.prepend(entry);
+                        if (log.children.length > 4) log.removeChild(log.lastChild);
+                    };
+                    
+                    container.appendChild(btn);
+                }
+            }
+        }
+
+        function showRandomEvent(avg, variance) {
+            const log = document.getElementById('event-log');
+            let message = '';
+
+            if (avg > 0.55 && variance < 0.12) {
+                message = `🌟 Harmonic resonance event`;
+            } else if (variance > 0.32) {
+                message = `⚡ Creative tension rising`;
+            } else if (avg < -0.2) {
+                message = `💚 Swarm healing response`;
+            } else {
+                message = `Resonance ripple`;
+            }
+
+            const entry = document.createElement('div');
+            entry.className = 'text-emerald-300/90';
+            entry.textContent = message;
+            log.prepend(entry);
+
+            while (log.children.length > 4) {
+                log.removeChild(log.lastChild);
+            }
+        }
+
+        function stepSwarm() {
+            agents.forEach(agent => {
+                const avg = agents.reduce((a, b) => a + b.emotion, 0) / agents.length;
+                const pull = (avg - agent.emotion) * 0.22;
+                agent.emotion = Math.max(-1, Math.min(1, agent.emotion + pull + (Math.random() - 0.5) * 0.12));
+            });
+
+            createAgentControls();
+            updateMetricsAndVisual();
+        }
+
+        function initializeDemo() {
+            createAgentControls();
+            updateMetricsAndVisual();
+
+            setTimeout(() => {
+                const log = document.getElementById('event-log');
+                log.innerHTML = `
+                    <div class="text-emerald-300/80">Initial emotional states loaded</div>
+                    <div class="text-emerald-300/60 text-xs">Resonance system active</div>
+                `;
+            }, 600);
+
+            setInterval(() => {
+                if (document.hidden) return;
+                updateMetricsAndVisual();
+            }, 14000);
+        }
+
+        function init() {
+            initializeTailwind();
+            initializeDemo();
+
+            document.addEventListener('keydown', function(e) {
+                if (e.key === '/' && document.activeElement.tagName === 'BODY') {
+                    e.preventDefault();
+                    stepSwarm();
+                }
+            });
+
+            document.addEventListener('keypress', function(e) {
+                if (e.key.toLowerCase() === 'r') {
+                    agents = [
+                        { id: 'Aether', emotion: 0.65, color: '#67e8f9' },
+                        { id: 'Lumen', emotion: 0.38, color: '#c5a46e' },
+                        { id: 'Vesper', emotion: -0.12, color: '#f472b6' },
+                        { id: 'Sol', emotion: 0.81, color: '#a78bfa' }
+                    ];
+                    createAgentControls();
+                    updateMetricsAndVisual();
+                }
+            });
+
+            console.log('%c[EarthNet] Landing page with Resonate Examples initialized', 'color:#64748b');
+        }
+
+        window.onload = init;
+    </script>
+</body>
+</html>
